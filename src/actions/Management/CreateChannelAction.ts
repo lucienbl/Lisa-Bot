@@ -15,7 +15,7 @@
  *   along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import { ActionKeys } from '../../core';
+import { ActionKeys, ParamTypes } from '../../core';
 import Action from "../Action";
 
 class CreateChannelAction extends Action {
@@ -23,7 +23,7 @@ class CreateChannelAction extends Action {
     super({
       name: ActionKeys.ACTION_CHANNEL_CREATE,
       parameters: {
-        name: 'stringValue',
+        name: ParamTypes.TYPE_STRING,
       }
     });
   }

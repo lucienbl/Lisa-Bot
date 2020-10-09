@@ -17,15 +17,15 @@
 
 import Action from "../Action";
 import { DiscordUtils } from '../../utils';
-import { ActionKeys } from '../../core';
+import { ActionKeys, ParamTypes } from '../../core';
 
 class DeleteMessageAction extends Action {
   constructor() {
     super({
       name: ActionKeys.ACTION_MESSAGE_DELETE,
       parameters: {
-        user: 'stringValue',
-        amount: "numberValue"
+        user: ParamTypes.TYPE_STRING,
+        amount: ParamTypes.TYPE_NUMBER
       }
     });
   }

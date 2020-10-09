@@ -18,9 +18,11 @@
 import MessageDispatcher from "./MessageDispatcher";
 import DialogFlow from "./DialogFlow";
 import * as ActionKeys from "./ActionKeys";
+import * as ParamTypes from "./ParamTypes";
 
 export {
   MessageDispatcher,
   DialogFlow,
-  ActionKeys
+  ActionKeys,
+  ParamTypes
 }

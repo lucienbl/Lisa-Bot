@@ -15,23 +15,5 @@
  *   along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import Action from "../Action";
-import { DiscordUtils } from '../../utils';
-import { ActionKeys, ParamTypes } from '../../core';
-
-class BanMemberAction extends Action {
-  constructor() {
-    super({
-      name: ActionKeys.ACTION_MEMBER_BAN,
-      parameters: {
-        user: ParamTypes.TYPE_STRING,
-      }
-    });
-  }
-
-  executer = async () => {
-    await this.message.guild.members.ban(DiscordUtils.getIdFromMention(this.parameters.user));
-  }
-}
-
-export default BanMemberAction;
+export const TYPE_STRING = "stringValue";
+export const TYPE_NUMBER = "numberValue";
