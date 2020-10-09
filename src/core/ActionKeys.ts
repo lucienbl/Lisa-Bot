@@ -15,22 +15,6 @@
  *   along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import { ActionKeys } from '../../core';
-import Action from "../Action";
-
-class CreateChannelAction extends Action {
-  constructor() {
-    super({
-      name: ActionKeys.ACTION_CHANNEL_CREATE,
-      parameters: {
-        name: 'stringValue',
-      }
-    });
-  }
-
-  executer = async () => {
-    await this.message.guild.channels.create(this.parameters.name);
-  }
-}
-
-export default CreateChannelAction;
+export const ACTION_MESSAGE_DELETE = "message.delete";
+export const ACTION_MEMBER_BAN = "member.ban";
+export const ACTION_CHANNEL_CREATE = "channel.create";

@@ -17,10 +17,7 @@
 
 import { Message } from 'discord.js';
 import { BanMemberAction, CreateChannelAction, DeleteMessageAction } from '../actions';
-
-const ACTION_MESSAGE_DELETE = "message.delete";
-const ACTION_MEMBER_BAN = "member.ban";
-const ACTION_CHANNEL_CREATE = "channel.create";
+import * as ActionKeys from "./ActionKeys";
 
 class ActionsMapper {
   public static mapAndExecuteAction = (action: string, message: Message, parameters: any, successAnswer: string) => {
@@ -41,13 +38,13 @@ class ActionsMapper {
 
   // Actions come here
   private _handleAction = () => ({
-    [ACTION_MESSAGE_DELETE]: () => {
+    [ActionKeys.ACTION_MESSAGE_DELETE]: () => {
       return this._executeAction(DeleteMessageAction);
     },
-    [ACTION_MEMBER_BAN]: () => {
+    [ActionKeys.ACTION_MEMBER_BAN]: () => {
       return this._executeAction(BanMemberAction);
     },
-    [ACTION_CHANNEL_CREATE]: () => {
+    [ActionKeys.ACTION_CHANNEL_CREATE]: () => {
       return this._executeAction(CreateChannelAction);
     }
   })

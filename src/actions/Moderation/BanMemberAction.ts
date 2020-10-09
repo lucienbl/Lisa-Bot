@@ -17,11 +17,12 @@
 
 import Action from "../Action";
 import { DiscordUtils } from '../../utils';
+import { ActionKeys } from '../../core';
 
 class BanMemberAction extends Action {
   constructor() {
     super({
-      name: "member.ban",
+      name: ActionKeys.ACTION_MEMBER_BAN,
       parameters: {
         user: 'stringValue',
       }
