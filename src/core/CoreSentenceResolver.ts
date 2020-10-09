@@ -18,7 +18,7 @@
 import { Message } from 'discord.js';
 import { container } from 'tsyringe';
 import DialogFlow from './DialogFlow';
-import { DeleteMessageAction, BanMemberAction, CreateChannelAction } from '../actions';
+import ActionsMapper from './ActionsMapper';
 
 class CoreSentenceResolver {
 
@@ -40,8 +40,6 @@ class CoreSentenceResolver {
     this._message.channel.startTyping();
     const response = await this._dialogFlow.getResponse(this._message.channel.id, this._sentence);
 
-    console.log(response);
-
     const answer = response.fulfillmentText.replace(/\\n/g, '\n');
 
     if (response.allRequiredParamsPresent && response.action) {
@@ -53,20 +51,12 @@ class CoreSentenceResolver {
   }
 
   parseAction = async (action: string, parameters: any, successAnswer: string) => {
-    switch (action) {
-      case "message.delete": new DeleteMessageAction().execute(this._message, parameters, successAnswer);
-      break;
-
-      case "member.ban": new BanMemberAction().execute(this._message, parameters, successAnswer);
-      break;
-
-      case "channel.create": new CreateChannelAction().execute(this._message, parameters, successAnswer);
-      break;
-
-      default: {
-        await this._message.reply(successAnswer);
-        this._message.channel.stopTyping();
-      };
+    try {
+      ActionsMapper.mapAndExecuteAction(action, this._message, parameters, successAnswer);
+    } catch (e) {
+      // fallback
+      await this._message.reply(successAnswer);
+      this._message.channel.stopTyping();
     }
   }
 }
